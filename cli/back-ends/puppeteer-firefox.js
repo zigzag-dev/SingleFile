@@ -23,7 +23,7 @@
 
 /* global singlefile, require, exports */
 
-const puppeteer = require("puppeteer-core");
+const puppeteer = require("chrome-aws-lambda").puppeteer;
 const scripts = require("./common/scripts.js");
 
 const EXECUTION_CONTEXT_DESTROYED_ERROR = "Execution context was destroyed";
