@@ -37,16 +37,14 @@ exports.initialize = async options => {
 	return browser;
 };
 
-exports.getPageData = async (options, page) => {
-	const privatePage = !page;
+exports.getPageData = async (options) => {
+	let page;
 	try {
-		if (privatePage) {
-			page = await browser.newPage();
-		}
+        page = await browser.newPage();
 		await setPageOptions(page, options);
 		return await getPageData(browser, page, options);
 	} finally {
-		if (privatePage) {
+		if (page) {
 			await page.close();
 		}
 	}
@@ -59,7 +57,10 @@ exports.closeBrowser = () => {
 };
 
 function getBrowserOptions(options = {}) {
-	const browserOptions = {};
+	const browserOptions = {
+		defaultViewport: null,
+		ignoreHTTPSErrors: true
+		};
 	if (options.browserHeadless !== undefined) {
 		browserOptions.headless = options.browserHeadless && !options.browserDebug;
 	}
