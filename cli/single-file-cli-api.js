@@ -141,7 +141,7 @@ async function finish(options) {
 		});
 	}
 	if (!options.browserDebug) {
-		return backend.closeBrowser();
+		return await backend.closeBrowser();
 	}
 }
 

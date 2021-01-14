@@ -50,9 +50,9 @@ exports.getPageData = async (options) => {
 	}
 };
 
-exports.closeBrowser = () => {
+exports.closeBrowser = async () => {
 	if (browser) {
-		return browser.close();
+		return await browser.close();
 	}
 };
 
